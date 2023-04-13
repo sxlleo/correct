@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 20">
+  <circle cx="10" cy="10" r="8" stroke="#3262FD" stroke-width="2" fill="none" stroke-dasharray="26 14">
+    <animateTransform attributeName="transform" attributeType="XML" type="rotate" dur="1s" from="0 10 10" to="360 10 10" repeatCount="indefinite" />
+  </circle>
+  <text x="25" y="10" dy=".4em" text-anchor="start" font-size="16px" font-weight='bold'>加载中</text>
+</svg>
