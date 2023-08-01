@@ -1,11 +1,11 @@
 /*
- * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Author: songxiaolin songxiaolin@xxx.com
  * @Date: 2023-01-29 18:59:47
- * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditors: songxiaolin songxiaolin@xxx.com
  * @LastEditTime: 2023-07-25 16:39:08
  * @FilePath: /jzx-correct/src/correct/CanvasWithImage.ts
  * @Description: 基础类，初始化canvas
- * Copyright (c) 2023 by songxiaolin email: songxiaolin@aixuexi.com, All Rights Reserved.
+ * Copyright (c) 2023 by songxiaolin email: songxiaolin@xxx.com, All Rights Reserved.
  */
 
 import { fabric } from 'fabric'

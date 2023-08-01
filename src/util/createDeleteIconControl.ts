@@ -1,11 +1,11 @@
 /*
- * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Author: songxiaolin songxiaolin@xxx.com
  * @Date: 2023-02-03 16:14:09
- * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditors: songxiaolin songxiaolin@xxx.com
  * @LastEditTime: 2023-07-18 12:42:19
  * @FilePath: /jzx-correct/src/util/createDeleteIconControl.ts
  * @Description: 在fabric的原型链上面补充自定义删除按钮逻辑
- * Copyright (c) 2023 by songxiaolin email: songxiaolin@aixuexi.com, All Rights Reserved.
+ * Copyright (c) 2023 by songxiaolin email: songxiaolin@xxx.com, All Rights Reserved.
  */
 import { fabric } from 'fabric'
 

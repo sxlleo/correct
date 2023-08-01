@@ -1,7 +1,7 @@
 /*
- * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Author: songxiaolin songxiaolin@xxx.com
  * @Date: 2023-03-24 16:42:12
- * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditors: songxiaolin songxiaolin@xxx.com
  * @LastEditTime: 2023-03-24 16:42:35
  * @FilePath: /jzx-correct/src/util/EventBus.ts
  * @Description: 

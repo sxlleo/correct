@@ -1,11 +1,11 @@
 /*
- * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Author: songxiaolin songxiaolin@xxx.com
  * @Date: 2023-01-12 14:56:43
- * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditors: songxiaolin songxiaolin@xxx.com
  * @LastEditTime: 2023-07-21 10:32:02
  * @FilePath: /jzx-correct/src/correct/CorrectTool.ts
  * @Description:
- * Copyright (c) 2023 by songxiaolin email: songxiaolin@aixuexi.com, All Rights Reserved.
+ * Copyright (c) 2023 by songxiaolin email: songxiaolin@xxx.com, All Rights Reserved.
  */
 import type { ICorrectTool, ActionTypeInfo } from '../interface/ICorrectTool'
 import type { ToolParamConfig } from '../interface/IAction'

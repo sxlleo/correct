@@ -1,7 +1,7 @@
 <!--
- * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Author: songxiaolin songxiaolin@xxx.com
  * @Date: 2023-03-24 16:44:16
- * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditors: songxiaolin songxiaolin@xxx.com
  * @LastEditTime: 2023-07-11 18:22:11
  * @FilePath: /jzx-correct/README.md
  * @Description: 
@@ -12,7 +12,7 @@
 
 ## 使用安装
 ```
-npm install @aixuexi/jzx-correct
+npm install @xxx/jzx-correct
 ```
 
 ## 注意1

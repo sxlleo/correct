@@ -1,11 +1,11 @@
 /*
- * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Author: songxiaolin songxiaolin@xxx.com
  * @Date: 2023-01-29 14:14:05
- * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditors: songxiaolin songxiaolin@xxx.com
  * @LastEditTime: 2023-02-27 18:01:49
  * @FilePath: /jzx-teacher-h5/src/views/evaluation/core/correct/actions/comments/Ellipse.ts
  * @Description:
- * Copyright (c) 2023 by songxiaolin email: songxiaolin@aixuexi.com, All Rights Reserved.
+ * Copyright (c) 2023 by songxiaolin email: songxiaolin@xxx.com, All Rights Reserved.
  */
 import { fabric } from 'fabric'
 import type CanvasWithImage from '../../CanvasWithImage'

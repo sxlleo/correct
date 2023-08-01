@@ -1,7 +1,7 @@
 /*
- * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Author: songxiaolin songxiaolin@xxx.com
  * @Date: 2023-03-03 11:37:19
- * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditors: songxiaolin songxiaolin@xxx.com
  * @LastEditTime: 2023-03-03 11:44:54
  * @FilePath: /jzx-teacher-h5/src/views/evaluation/core/correct/config.ts
  * @Description:

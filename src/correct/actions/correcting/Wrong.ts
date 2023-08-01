@@ -1,11 +1,11 @@
 /*
- * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Author: songxiaolin songxiaolin@xxx.com
  * @Date: 2023-01-29 14:17:12
- * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditors: songxiaolin songxiaolin@xxx.com
  * @LastEditTime: 2023-04-06 11:26:58
  * @FilePath: /jzx-correct/src/correct/actions/correcting/Wrong.ts
  * @Description:
- * Copyright (c) 2023 by songxiaolin email: songxiaolin@aixuexi.com, All Rights Reserved.
+ * Copyright (c) 2023 by songxiaolin email: songxiaolin@xxx.com, All Rights Reserved.
  */
 import type CanvasWithImage from '../../CanvasWithImage'
 import { iconsLoaded } from '@/util/index'
