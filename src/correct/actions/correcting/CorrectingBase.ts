@@ -1,3 +1,12 @@
+/*
+ * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Date: 2023-04-04 15:49:31
+ * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditTime: 2023-04-04 16:05:45
+ * @FilePath: /jzx-correct/src/correct/actions/correcting/CorrectingBase.ts
+ * @Description: 
+ * Copyright (c) 2023 by ${git_name} email: ${git_email}, All Rights Reserved.
+ */
 import type { fabric } from 'fabric'
 import ActionBase from "../ActionBase"
 import type CanvasWithImage from '@/correct/CanvasWithImage'

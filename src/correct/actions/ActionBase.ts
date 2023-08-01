@@ -1,3 +1,13 @@
+/*
+ * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Date: 2023-01-31 16:18:37
+ * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditTime: 2023-03-27 15:49:39
+ * @FilePath: /jzx-correct/src/correct/actions/ActionBase.ts
+ * @Description:
+ * Copyright (c) 2023 by songxiaolin email: songxiaolin@aixuexi.com, All Rights Reserved.
+ */
+
 import type CanvasWithImage from '../CanvasWithImage'
 import type { fabric } from 'fabric'
 import type { IAction } from '../../interface/IAction'

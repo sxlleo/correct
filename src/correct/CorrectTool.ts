@@ -1,3 +1,12 @@
+/*
+ * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Date: 2023-01-12 14:56:43
+ * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditTime: 2023-07-21 10:32:02
+ * @FilePath: /jzx-correct/src/correct/CorrectTool.ts
+ * @Description:
+ * Copyright (c) 2023 by songxiaolin email: songxiaolin@aixuexi.com, All Rights Reserved.
+ */
 import type { ICorrectTool, ActionTypeInfo } from '../interface/ICorrectTool'
 import type { ToolParamConfig } from '../interface/IAction'
 import ActionsManager from './ActionsManager'
@@ -12,6 +21,8 @@ import EventMitter from '../util/EventEmitter'
 import '../util/createDeleteIconControl'
 
 class CorrectTool extends EventMitter implements ICorrectTool {
+  // @ts-ignore
+  static VERSION = '__VERSION__'
   // canvas实例
   canvas: CanvasWithImage
   // canvas的父节点
@@ -114,13 +125,21 @@ class CorrectTool extends EventMitter implements ICorrectTool {
   }
 
   /**
+   * 全屏
+   */
+  fullscreen(value:boolean):void {
+    this.canvas.isFullscreen = value
+  }
+
+  /**
    * 禁用
    * @param value 是否禁用
    */
   disable(value: boolean): void {
     this._isDisabled = value
     this.canvas.skipTargetFind = value
-    this.canvas.setZoom(1)
+    this.canvas.setZoom(1) // 重置缩放
+    // this.canvas.resetFilpRotate() // 重置镜像和旋转
     this.canvas.discardActiveObject().renderAll()
   }
 
@@ -129,6 +148,8 @@ class CorrectTool extends EventMitter implements ICorrectTool {
    */
   reset(): void {
     this._addedObjects = []
+    this.canvas.resetFilpRotate() // 重置镜像和旋转
+    this.canvas.discardActiveObject().renderAll()
     this.canvas.remove(...this.canvas.getObjects())
   }
 

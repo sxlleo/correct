@@ -1,3 +1,12 @@
+/*
+ * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Date: 2023-01-29 14:15:12
+ * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditTime: 2023-02-27 16:12:02
+ * @FilePath: /jzx-teacher-h5/src/views/evaluation/core/correct/actions/comments/Wavyline.ts
+ * @Description: 波浪线
+ * Copyright (c) 2023 by songxiaolin email: songxiaolin@aixuexi.com, All Rights Reserved.
+ */
 import { fabric } from 'fabric'
 import type CanvasWithImage from '../../CanvasWithImage'
 import ActionBase from '../ActionBase'

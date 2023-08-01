@@ -10,6 +10,7 @@ lerna-debug.log*
 node_modules
 .DS_Store
 *.local
+package-lock.json
 
 # Editor directories and files
 .vscode/*
@@ -20,3 +21,7 @@ node_modules
 *.njsproj
 *.sln
 *.sw?
+
+upload.token
+package-lock.json
+yarn.lock

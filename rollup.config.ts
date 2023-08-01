@@ -1,3 +1,12 @@
+/*
+ * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Date: 2023-03-23 11:57:00
+ * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditTime: 2023-07-21 10:51:05
+ * @FilePath: /jzx-correct/rollup.config.ts
+ * @Description: 
+ */
+// @ts-nocheck
 import path from 'path'
 // A Rollup plugin which locates modules using the Node resolution algorithm, for using third party modules in node_modules
 import nodeResolve from '@rollup/plugin-node-resolve';
@@ -13,56 +22,22 @@ import url from'@rollup/plugin-url'
 import babel from'@rollup/plugin-babel';
 // 用于将 JSON 文件作为模块导入到 Rollup 打包的项目中。它可以将 JSON 文件转换为 ES6 模块格式，并将其包含在打包后的文件中。
 import json from'@rollup/plugin-json';
-
+// 压缩js
+import terser from '@rollup/plugin-terser'
+// 多入口
 import multiEntry from '@rollup/plugin-multi-entry'
+// A Rollup plugin which replaces targeted strings in files while bundling.
+import replace from '@rollup/plugin-replace';
 
 import pkg from './package.json';
+
+const env = process.env.NODE_ENV
 
 // resolve公共方法
 const resolve = p => path.resolve(__dirname, p)
 
-// 
-const customResolver = nodeResolve({
-  extensions: ['.ts', '.js', '.json']
-});
-
-// externalize all direct deps
-function resolveExternal(){
-	return [
-		...Object.keys(pkg.dependencies || {}),
-		...Object.keys(pkg.devDependencies || {})
-	]
-}
-
-// 插件
-const plugins = [
-	multiEntry(),
-	nodeResolve(), 
-	commonjs(), 
-	json(),
-	typescript({
-		tsconfig: './tsconfig.json',
-		declaration: true,
-		declarationDir: 'types',
-	}),
-	url({
-		fileName: '[dirname][hash][extname]',
-		// 超过limit的文件会被copy，否则转成base64
-		limit: 4 * 1024 // 4kb，
-	}),
-	alias({
-		// @ts-ignore
-		customResolver,
-		entries: {
-			'@': path.resolve(__dirname, 'src')
-		}
-	}),
-	babel({
-		presets: ['@babel/preset-env'],
-		exclude: 'node_modules/**',
-		extensions: ['.js', '.ts']
-	}),
-]
+const defaultFormats = ['esm-bundler', 'cjs']
+const packageConfigs = []
 
 // 输出配置
 const outputConfigs = {
@@ -76,17 +51,78 @@ const outputConfigs = {
   },
 }
 
-module.exports = [
-	// CommonJS (for Node) and ES module (for bundlers) build.
-	// (We could have three entries in the configuration array
-	// instead of two, but it's quicker to generate multiple
-	// builds from a single configuration where possible, using
-	// an array for the `output` option, where we can specify
-	// `file` and `format` for each target)
-	{
-		input: 'src/index.ts',
-		external: resolveExternal(),
-		output: Object.values(outputConfigs),
-		plugins
-	}
-]
+function createConfig(format, plugins = []) {
+  const isGlobalBuild = /global/.test(format)
+
+  // 不需要参与bundle的第三方包
+  // externalize all direct deps
+  function resolveExternal() {
+    if (isGlobalBuild) return []
+
+    return [
+      ...Object.keys(pkg.devDependencies || {}),
+      ...Object.keys(pkg.dependencies || {}),
+    ]
+  }
+
+  const customResolver = nodeResolve({
+    extensions: ['.ts', '.js', '.json'],
+  })
+
+  return {
+    input: 'src/index.ts',
+    external: resolveExternal(),
+    plugins: [
+      multiEntry(),
+      nodeResolve(),
+      commonjs(),
+      typescript({
+        tsconfig: './tsconfig.json',
+        declaration: true,
+        declarationDir: 'types',
+      }),
+      url({
+        fileName: '[dirname][hash][extname]',
+        // 超过limit的文件会被copy，否则转成base64
+        limit: 4 * 1024, // 4kb，
+      }),
+      alias({
+        // @ts-ignore
+        customResolver,
+        entries: {
+          '@': path.resolve(__dirname, 'src'),
+        },
+      }),
+      json(),
+      babel({
+        presets: ['@babel/preset-env'],
+        exclude: 'node_modules/**',
+        extensions: ['.js', '.ts'],
+      }),
+      terser({
+        module: /^esm/.test(format),
+        compress: {
+          ecma: 2015,
+          pure_getters: true,
+          drop_console: env === 'development' ? false : true,
+        },
+        // esm格式不混淆变量名
+        mangle: !/^esm/.test(format),
+        safari10: true,
+      }),
+      replace({
+        __VERSION__: pkg.version,
+      }),
+      ...plugins,
+    ],
+    output: {
+      ...outputConfigs[format],
+    },
+  }
+}
+
+defaultFormats.forEach((format) => {
+  packageConfigs.push(createConfig(format))
+})
+
+module.exports = packageConfigs

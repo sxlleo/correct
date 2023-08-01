@@ -1,3 +1,12 @@
+/*
+ * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Date: 2023-01-31 17:12:57
+ * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditTime: 2023-04-06 11:11:59
+ * @FilePath: /jzx-correct/src/correct/DefinedEvents/index.ts
+ * @Description:
+ * Copyright (c) 2023 by songxiaolin email: songxiaolin@aixuexi.com, All Rights Reserved.
+ */
 export default {
   // 触发开启工具
   TRIGGER_TOOL: 'trigger_tool',

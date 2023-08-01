@@ -1,3 +1,12 @@
+/*
+ * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Date: 2023-03-03 11:37:19
+ * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditTime: 2023-03-03 11:44:54
+ * @FilePath: /jzx-teacher-h5/src/views/evaluation/core/correct/config.ts
+ * @Description:
+ * Copyright (c) 2023 by ${git_name} email: ${git_email}, All Rights Reserved.
+ */
 import { Controls } from '../interface/ICorrectTool'
 /**
  *  检测当前行为是否可以一直选中

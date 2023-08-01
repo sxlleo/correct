@@ -1,3 +1,12 @@
+/*
+ * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Date: 2023-01-29 14:16:25
+ * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditTime: 2023-03-10 16:40:05
+ * @FilePath: /jzx-teacher-h5/src/views/evaluation/correctsManager/core/correct/actions/comments/Seal.ts
+ * @Description:
+ * Copyright (c) 2023 by songxiaolin email: songxiaolin@aixuexi.com, All Rights Reserved.
+ */
 import type { fabric } from 'fabric'
 import ActionBase from '../ActionBase'
 import { iconsLoaded } from '../../../util/index'

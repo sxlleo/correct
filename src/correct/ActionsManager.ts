@@ -1,8 +1,17 @@
+/*
+ * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Date: 2023-01-29 11:34:00
+ * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditTime: 2023-03-24 16:43:01
+ * @FilePath: /jzx-correct/src/correct/ActionsManager.ts
+ * @Description: 工具管理
+ * Copyright (c) 2023 by songxiaolin email: songxiaolin@aixuexi.com, All Rights Reserved.
+ */
 import type { fabric } from 'fabric'
 import type { IActionsManager } from '../interface/IActionsManager'
 import { Controls, type ActionTypeInfo } from '../interface/ICorrectTool'
 import type { IAction } from '../interface/IAction'
-import { Ellipse, Text, Wavyline, Right, Wrong, NotCompleteRight, Zoom, Seal, Rotate } from './actions/index'
+import { Ellipse, Text, Wavyline, Right, Wrong, NotCompleteRight, Zoom, Seal, Rotate, Flip } from './actions/index'
 import type CanvasWithImage from './CanvasWithImage'
 
 import eventBus from '../util/EventBus'
@@ -72,6 +81,9 @@ class ActionsManager implements IActionsManager {
         break
       case Controls.Rotate:
         tool = this._createTool(actionType, Rotate)
+        break
+      case Controls.Flip:
+        tool = this._createTool(actionType, Flip)
         break
       case Controls.Clean:
         this._clear()

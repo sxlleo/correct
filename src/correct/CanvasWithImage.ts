@@ -1,9 +1,19 @@
+/*
+ * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Date: 2023-01-29 18:59:47
+ * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditTime: 2023-07-25 16:39:08
+ * @FilePath: /jzx-correct/src/correct/CanvasWithImage.ts
+ * @Description: 基础类，初始化canvas
+ * Copyright (c) 2023 by songxiaolin email: songxiaolin@aixuexi.com, All Rights Reserved.
+ */
+
 import { fabric } from 'fabric'
 import type { ToolParamConfig } from '../interface/IAction'
 import { loadImage } from '../util/index'
 import ResizeObserver from 'resize-observer-polyfill'
 
-import { debounce } from 'lodash'
+import { debounce } from 'lodash-es'
 
 //加载动画
 const loadingIcon = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MCAyMCI+CiAgPGNpcmNsZSBjeD0iMTAiIGN5PSIxMCIgcj0iOCIgc3Ryb2tlPSIjMzI2MkZEIiBzdHJva2Utd2lkdGg9IjIiIGZpbGw9Im5vbmUiIHN0cm9rZS1kYXNoYXJyYXk9IjI2IDE0Ij4KICAgIDxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgYXR0cmlidXRlVHlwZT0iWE1MIiB0eXBlPSJyb3RhdGUiIGR1cj0iMXMiIGZyb209IjAgMTAgMTAiIHRvPSIzNjAgMTAgMTAiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiAvPgogIDwvY2lyY2xlPgogIDx0ZXh0IHg9IjI1IiB5PSIxMCIgZHk9Ii40ZW0iIHRleHQtYW5jaG9yPSJzdGFydCIgZm9udC1zaXplPSIxNnB4IiBmb250LXdlaWdodD0nYm9sZCc+5Yqg6L295LitPC90ZXh0Pgo8L3N2Zz4K'
@@ -52,22 +62,36 @@ class CanvasWithImage extends fabric.Canvas {
   _bgImageRotate = 0
 
   /**
+   * 是否水平翻转 默认false 不翻转
+   */
+  _filpX = false
+  /**
+   * 是否垂直翻转 默认false 不翻转
+   */
+  _filpY = false
+
+  /**
    * 批改工具id
    */
   _correctId: string
+
+  /**
+   * 全屏
+   */
+  _isFullscreen: boolean = false
 
   private _resizeObserver: ResizeObserver
 
   constructor(canvasEle: HTMLCanvasElement, options: any, correctId: string, config: ToolParamConfig) {
     super(canvasEle, options)
-    const { imageUrl, container } = config
+    const { imageUrl, container, originalContainerWidth, originalContainerHeight } = config
     this._bgImageUrl = imageUrl
     this._container = container
     this._correctId = correctId
 
     // 初始化容器原始宽高
-    this._originalContainerWidth = this._currentContainerWidth = this._container.clientWidth
-    this._originalContainerHeight = this._currentContainerHeight = this._container.clientHeight
+    this._originalContainerWidth = this._currentContainerWidth = originalContainerWidth
+    this._originalContainerHeight = this._currentContainerHeight = originalContainerHeight
 
     // 更新canvas
     const containerResize = debounce(this._onContainerResize.bind(this), 100)
@@ -75,11 +99,12 @@ class CanvasWithImage extends fabric.Canvas {
     if (!this._resizeObserver) {
       this._resizeObserver = new ResizeObserver((entries, observer) => {
         for (const entry of entries) {
-          const {
-            borderBoxSize: [{ inlineSize: width, blockSize: height }]
-          } = entry
-          if (!(this._currentContainerWidth === width && this._currentContainerHeight === height)) {
-            containerResize(width, height)
+          const { borderBoxSize, contentBoxSize, contentRect } = entry;
+          const { inlineSize: width, blockSize: height } = borderBoxSize?.length > 0 ? borderBoxSize[0] : contentBoxSize?.length > 0 ? contentBoxSize[0] : 0
+          let tempWidth = width === undefined ? contentRect.width : width;
+          let tempHeight = height === undefined ? contentRect.height : height;
+          if (!(this._currentContainerWidth === tempWidth && this._currentContainerHeight === tempHeight)) {
+            containerResize(tempWidth, tempHeight);
           }
         }
       })
@@ -178,8 +203,24 @@ class CanvasWithImage extends fabric.Canvas {
       angle: rotate
     })
     this._initializeOriginalCanvasSize()
-
     if (this.getZoom() != this.minZoomValue) this.setZoom(this.minZoomValue)
+    setTimeout(() => {
+      this._update()
+    }, 0)
+  }
+
+  /**
+   * 镜像图片 使用fabric的flipX: true属性
+   * @param
+   */
+  async updateBackgroundImageFlip(): Promise<any> {
+    if (this._bgImageRotate === 90 || this._bgImageRotate === 270) { // 处理竖向图片时
+      const flipY = typeof this.backgroundImage === 'object' ? !!this.backgroundImage.flipY : false
+      this._filpY = !flipY
+    } else {
+      const flipX = typeof this.backgroundImage === 'object' ? !!this.backgroundImage.flipX : false
+      this._filpX = !flipX
+    }
     setTimeout(() => {
       this._update()
     }, 0)
@@ -198,8 +239,9 @@ class CanvasWithImage extends fabric.Canvas {
 
   /**
    * 根据图片原始尺寸，1:更新canvas大小；2:更新背景图片大小
+   * @param param 设置图片的参数
    */
-  _update(): void {
+  _update(): void { 
     const zoom = this.getZoom()
     // 计算获取图片尺寸
     const { width: imgWidth, height: imgHeight } = this._calculateImageSizeByRotate()
@@ -218,14 +260,15 @@ class CanvasWithImage extends fabric.Canvas {
     // console.log('==========_canvasOriginalWidth', this._canvasOriginalWidth)
     // console.log('==========img size', imgWidth, imgHeight)
     // console.log('==========canvas相对于原始尺寸的比例', (canvasWidth * (1 + zoom - this.minZoomValue)) / this._canvasOriginalWidth)
-
     this._loadedBgImage.set({
       top: this._canvasOriginalHeight / 2,
       left: this._canvasOriginalWidth / 2,
       scaleX: this._canvasOriginalWidth / imgWidth,
       scaleY: this._canvasOriginalHeight / imgHeight,
       originX: 'center',
-      originY: 'center'
+      originY: 'center',
+      flipX: this._filpX,
+      flipY: this._filpY
     })
   }
 
@@ -315,6 +358,16 @@ class CanvasWithImage extends fabric.Canvas {
     return this
   }
 
+  resetFilpRotate(){
+    // 重置翻转和旋转
+    this._filpY = false
+    this._filpX = false
+    this._bgImageRotate = 0
+    setTimeout(() => {
+      this._update()
+    }, 0)
+  }
+
   destroy(): void {
     this._resizeObserver.unobserve(this._container)
     this._resizeObserver = null
@@ -334,6 +387,22 @@ class CanvasWithImage extends fabric.Canvas {
 
   get canvasOriginalHeight(): number {
     return this._canvasOriginalHeight
+  }
+
+  get originalContainerWidth(): number {
+    return this._originalContainerWidth
+  }
+
+  get originalContainerHeight(): number {
+    return this._originalContainerHeight
+  }
+
+  set isFullscreen(value: boolean) {
+    this._isFullscreen = value
+  }
+
+  get isFullscreen(): boolean {
+    return this._isFullscreen
   }
 }
 

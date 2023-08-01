@@ -1,3 +1,12 @@
+/*
+ * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Date: 2023-03-23 18:18:55
+ * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditTime: 2023-04-03 13:55:31
+ * @FilePath: /jzx-correct/src/index.ts
+ * @Description:
+ * Copyright (c) 2023 by ${git_name} email: ${git_email}, All Rights Reserved.
+ */
 export { default as DefinedEvents } from './correct/DefinedEvents/index'
 export { default as EventEmitter } from './util/EventEmitter'
 
