@@ -1,24 +1,30 @@
 /*
- * @Author: songxiaolin songxiaolin@xxx.com
+ * @Author: songxiaolin songxiaolin@aixuexi.com
  * @Date: 2023-04-04 15:49:31
- * @LastEditors: songxiaolin songxiaolin@xxx.com
- * @LastEditTime: 2023-04-04 16:05:45
- * @FilePath: /jzx-correct/src/correct/actions/correcting/CorrectingBase.ts
- * @Description: 
+ * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditTime: 2023-07-06 16:44:19
+ * @FilePath: /jzx-correct-mobile/src/correct/actions/correcting/CorrectingBase.ts
+ * @Description: 将组件共性的部分抽离出来，作为基类
  * Copyright (c) 2023 by ${git_name} email: ${git_email}, All Rights Reserved.
  */
 import type { fabric } from 'fabric'
-import ActionBase from "../ActionBase"
+import ActionBase from '../ActionBase'
 import type CanvasWithImage from '@/correct/CanvasWithImage'
 
-class CorrectingBase extends ActionBase{
+class CorrectingBase extends ActionBase {
   /**
    * 加载完成的图标
    */
-  _loadedIcon: fabric.Image
+  _loadedIcon: fabric.Image | Promise<any>
 
-  constructor(correctId: string, type: number, canvas: CanvasWithImage) {
-    super(correctId, type, canvas)
+  constructor(
+    correctId: string,
+    type: number,
+    canvas: CanvasWithImage,
+    isKeep = true,
+    config?: any
+  ) {
+    super(correctId, type, canvas, isKeep, config)
   }
 
   /**
@@ -31,20 +37,28 @@ class CorrectingBase extends ActionBase{
       top: pointer.y,
       left: pointer.x,
       originX: 'center',
-      originY: 'center'
+      originY: 'center',
+      ...this._config,
     })
 
-    img.__actionType = this._type
     this.addListener(img)
     this.canvas.add(img)
+    this.canvas.requestRenderAll()
   }
 
   mousedown(pointer: fabric.Point) {
     // 复制图片
-    this._loadedIcon.clone(this._onClone.bind(this, pointer))
+    if (this._loadedIcon instanceof Promise) {
+      this._loadedIcon.then((res) => {
+        res.clone(this._onClone.bind(this, pointer))
+      })
+    } else {
+      this._loadedIcon.clone(this._onClone.bind(this, pointer))
+    }
   }
 
-  destroy():void {
+  destroy(): void {
+    super.destroy()
     this._loadedIcon = null
   }
 }

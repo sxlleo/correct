@@ -1,11 +1,11 @@
 /*
- * @Author: songxiaolin songxiaolin@xxx.com
+ * @Author: songxiaolin songxiaolin@aixuexi.com
  * @Date: 2023-01-29 14:15:12
- * @LastEditors: songxiaolin songxiaolin@xxx.com
- * @LastEditTime: 2023-02-27 16:12:02
- * @FilePath: /jzx-teacher-h5/src/views/evaluation/core/correct/actions/comments/Wavyline.ts
+ * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditTime: 2023-06-19 16:28:40
+ * @FilePath: /jzx-correct-mobile/src/correct/actions/edit/Wavyline.ts
  * @Description: 波浪线
- * Copyright (c) 2023 by songxiaolin email: songxiaolin@xxx.com, All Rights Reserved.
+ * Copyright (c) 2023 by songxiaolin email: songxiaolin@aixuexi.com, All Rights Reserved.
  */
 import { fabric } from 'fabric'
 import type CanvasWithImage from '../../CanvasWithImage'
@@ -26,22 +26,27 @@ type WavylineConfigType = {
 const DefaultConfig: WavylineConfigType = {
   rang: 4,
   strokeWidth: 2,
-  minPeriod: 20
+  minPeriod: 20,
 }
 
 class Wavyline extends ActionBase {
-  _config: any
   _curLine: fabric.Path
   /**
    * 鼠标按下点
    */
   _downPointer: fabric.Point
 
-  constructor(correctId: string, type: number, canvas: CanvasWithImage, config?: WavylineConfigType) {
-    super(correctId, type, canvas)
+  constructor(
+    correctId: string,
+    type: number,
+    canvas: CanvasWithImage,
+    isKeep = true,
+    config?: WavylineConfigType
+  ) {
+    super(correctId, type, canvas, isKeep, config)
     this._config = {
       ...DefaultConfig,
-      ...config
+      ...config,
     }
   }
 
@@ -51,8 +56,6 @@ class Wavyline extends ActionBase {
     // 记录初试位置
     this._downPointer = pointer
 
-    // 设置canvas不能选中
-    this.canvas.selection = false
     // 忽略canvas目标选中
     this.canvas.skipTargetFind = true
   }
@@ -73,18 +76,21 @@ class Wavyline extends ActionBase {
 
     // 需要判断点击时和松开时鼠标的坐标点是否相等，相等的话就不创建椭圆了
     if (this._downPointer.eq(pointer)) {
+      console.log('wavyline mouseup remove')
       this._curLine && this.canvas.remove(this._curLine)
     } else {
+      this.addListener(this._curLine, true)
+
       // 设置椭圆样式
       this._curLine.set('opacity', 1)
       this.canvas.setActiveObject(this._curLine)
     }
 
     // 恢复canvas选中逻辑
-    this.canvas.selection = true
     this.canvas.skipTargetFind = false
 
     this.canvas.requestRenderAll()
+    console.log('========mouseup', this._curLine)
 
     // 清除临时创建的椭圆
     this._curLine = null
@@ -93,36 +99,56 @@ class Wavyline extends ActionBase {
 
   // 利用贝塞尔曲线： 贝塞尔曲线 https://developer.mozilla.org/zh-CN/docs/Web/SVG/Tutorial/Paths
   _draw(pointer: fabric.Point): void {
-    const { period, num } = this._caculatePeriodAndNumByDistance(this._downPointer, pointer)
+    const { period, num } = this._caculatePeriodAndNumByDistance(
+      this._downPointer,
+      pointer
+    )
 
     let pathData = `M ${this._downPointer.x} ${this._downPointer.y}`
     for (let i = 0; i < num; i++) {
       // 计算基准的点
       const baseStartPointerX = this._downPointer.x + i * period
       if (i == 0) {
-        pathData += ` C ${baseStartPointerX + period / 8} ${this._downPointer.y + this._config.rang}, ${baseStartPointerX + (period * 3) / 8} ${
+        pathData += ` C ${baseStartPointerX + period / 8} ${
+          this._downPointer.y + this._config.rang
+        }, ${baseStartPointerX + (period * 3) / 8} ${
           this._downPointer.y + this._config.rang
         }, ${baseStartPointerX + period / 2} ${this._downPointer.y}`
       } else {
-        pathData += ` S ${baseStartPointerX + (period * 3) / 8} ${this._downPointer.y + this._config.rang}, ${baseStartPointerX + period / 2} ${
-          this._downPointer.y
-        }`
+        pathData += ` S ${baseStartPointerX + (period * 3) / 8} ${
+          this._downPointer.y + this._config.rang
+        }, ${baseStartPointerX + period / 2} ${this._downPointer.y}`
       }
-      pathData += ` S ${baseStartPointerX + (period * 7) / 8} ${this._downPointer.y - this._config.rang}, ${baseStartPointerX + period} ${this._downPointer.y}`
+      pathData += ` S ${baseStartPointerX + (period * 7) / 8} ${
+        this._downPointer.y - this._config.rang
+      }, ${baseStartPointerX + period} ${this._downPointer.y}`
     }
 
     // 计算弧度
-    const cPointer = new fabric.Point(this._downPointer.x + 10, this._downPointer.y)
+    const cPointer = new fabric.Point(
+      this._downPointer.x + 10,
+      this._downPointer.y
+    )
     // fabric Api和@types/fabric里面的接口定义对不上，囧！！！！（先忽略这个错误）
-    const { angle } = fabric.util.getBisector(this._downPointer, cPointer, pointer)
+    const { angle } = fabric.util.getBisector(
+      this._downPointer,
+      cPointer,
+      pointer
+    )
 
     // TODO: 不清楚为什么算出来的角度都是下面两个半区，还需要研究下；暂时先判断点的y坐标来做反转
     const lineAngle = fabric.util.radiansToDegrees(angle)
-    this._curLine = this._create(pathData, this._downPointer.y < pointer.y ? lineAngle : -lineAngle)
+    this._curLine = this._create(
+      pathData,
+      this._downPointer.y < pointer.y ? lineAngle : -lineAngle
+    )
   }
 
   // 根据长度动态计算波浪线周期和周期个数
-  _caculatePeriodAndNumByDistance(startPoint: fabric.Point, endPoint: fabric.Point): any {
+  _caculatePeriodAndNumByDistance(
+    startPoint: fabric.Point,
+    endPoint: fabric.Point
+  ): any {
     // 总距离
     const distance = startPoint.distanceFrom(endPoint)
     let period = this._config.minPeriod
@@ -137,7 +163,7 @@ class Wavyline extends ActionBase {
 
     return {
       period,
-      num
+      num,
     }
   }
 
@@ -148,11 +174,8 @@ class Wavyline extends ActionBase {
       originX: 'left',
       originY: 'center',
       strokeWidth: this._config.strokeWidth,
-      angle: angle
+      angle: angle,
     })
-
-    line.__actionType = this._type
-    this.addListener(line)
 
     // 添加到画布中
     this.canvas.add(line)

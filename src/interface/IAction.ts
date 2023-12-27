@@ -1,19 +1,26 @@
 /*
- * @Author: songxiaolin songxiaolin@xxx.com
+ * @Author: songxiaolin songxiaolin@aixuexi.com
  * @Date: 2023-01-17 14:31:15
- * @LastEditors: songxiaolin songxiaolin@xxx.com
- * @LastEditTime: 2023-07-25 16:31:29
- * @FilePath: /jzx-correct/src/interface/IAction.ts
+ * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditTime: 2023-06-28 16:35:42
+ * @FilePath: /jzx-correct-mobile/src/interface/IAction.ts
  * @Description: 工具接口
- * Copyright (c) 2023 by songxiaolin email: songxiaolin@xxx.com, All Rights Reserved.
+ * Copyright (c) 2023 by songxiaolin email: songxiaolin@aixuexi.com, All Rights Reserved.
  */
-
 import type { fabric } from 'fabric'
 interface IAction {
+  /**
+   * 触发的参数
+   */
+  triggerParams: any
   /**
    * 是否保持
    */
   isKeep: boolean
+  /**
+   * 其他额外的参数
+   */
+  externalParams: Record<string | number, any>
   /**
    *  鼠标按下
    * @param pointer
@@ -37,6 +44,18 @@ interface IAction {
    * 销毁
    */
   destroy(): void
+  /**
+   * 禁用
+   * @param value 是否禁用
+   */
+  disable?(value: boolean): void
+}
+
+type CopyCanvasData = {
+  // 画布数据
+  jsonData: any
+  // 拷贝的画布宽度
+  canvasWidth: number
 }
 
 type ToolParamConfig = {
@@ -51,12 +70,10 @@ type ToolParamConfig = {
   /**
    * 存放canvas的容器，
    */
-  container: HTMLElement,
-  /**
-   * 初始容器宽高
-   */
-  originalContainerWidth: number,
-  originalContainerHeight: number,
+  container: HTMLElement
+
+  /** 复制的画布数据*/
+  copyCanvasData: CopyCanvasData
 }
 
-export type { IAction, ToolParamConfig }
+export type { IAction, ToolParamConfig, CopyCanvasData }

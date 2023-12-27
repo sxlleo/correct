@@ -7,13 +7,12 @@ type WavylineConfigType = {
     minPeriod?: number;
 };
 declare class Wavyline extends ActionBase {
-    _config: any;
     _curLine: fabric.Path;
     /**
      * 鼠标按下点
      */
     _downPointer: fabric.Point;
-    constructor(correctId: string, type: number, canvas: CanvasWithImage, config?: WavylineConfigType);
+    constructor(correctId: string, type: number, canvas: CanvasWithImage, isKeep?: boolean, config?: WavylineConfigType);
     mousedown(pointer: fabric.Point): void;
     mousemove(pointer: fabric.Point): void;
     mouseup(pointer: fabric.Point): void;

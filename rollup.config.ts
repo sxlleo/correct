@@ -1,55 +1,55 @@
 /*
- * @Author: songxiaolin songxiaolin@xxx.com
+ * @Author: songxiaolin songxiaolin@aixuexi.com
  * @Date: 2023-03-23 11:57:00
- * @LastEditors: songxiaolin songxiaolin@xxx.com
- * @LastEditTime: 2023-07-21 10:51:05
- * @FilePath: /jzx-correct/rollup.config.ts
- * @Description: 
+ * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditTime: 2023-07-17 11:40:45
+ * @FilePath: /jzx-correct-mobile/rollup.config.ts
+ * @Description:
  */
 // @ts-nocheck
 import path from 'path'
 // A Rollup plugin which locates modules using the Node resolution algorithm, for using third party modules in node_modules
-import nodeResolve from '@rollup/plugin-node-resolve';
+import nodeResolve from '@rollup/plugin-node-resolve'
 //A Rollup plugin to convert CommonJS modules to ES6, so they can be included in a Rollup bundle
-import commonjs from '@rollup/plugin-commonjs';
+import commonjs from '@rollup/plugin-commonjs'
 // 编译ts
-import typescript from'@rollup/plugin-typescript';
+import typescript from '@rollup/plugin-typescript'
 // 处理路径别名和后缀缩写
-import alias from'@rollup/plugin-alias'
+import alias from '@rollup/plugin-alias'
 // 处理媒体资源
-import url from'@rollup/plugin-url'
+import url from '@rollup/plugin-url'
 // babel
-import babel from'@rollup/plugin-babel';
+import babel from '@rollup/plugin-babel'
 // 用于将 JSON 文件作为模块导入到 Rollup 打包的项目中。它可以将 JSON 文件转换为 ES6 模块格式，并将其包含在打包后的文件中。
-import json from'@rollup/plugin-json';
+import json from '@rollup/plugin-json'
+
+import multiEntry from '@rollup/plugin-multi-entry'
 // 压缩js
 import terser from '@rollup/plugin-terser'
-// 多入口
-import multiEntry from '@rollup/plugin-multi-entry'
 // A Rollup plugin which replaces targeted strings in files while bundling.
-import replace from '@rollup/plugin-replace';
+import replace from '@rollup/plugin-replace'
 
-import pkg from './package.json';
-
-const env = process.env.NODE_ENV
+import pkg from './package.json'
 
 // resolve公共方法
-const resolve = p => path.resolve(__dirname, p)
+const resolve = (p) => path.resolve(__dirname, p)
 
-const defaultFormats = ['esm-bundler', 'cjs']
-const packageConfigs = []
+const env = process.env.NODE_ENV
 
 // 输出配置
 const outputConfigs = {
   'esm-bundler': {
     file: resolve(`dist/${pkg.filename}.esm-bundler.js`),
-    format: `es`
+    format: `es`,
   },
   cjs: {
     file: resolve(`dist/${pkg.filename}.cjs.js`),
-    format: `cjs`
+    format: `cjs`,
   },
 }
+
+const defaultFormats = ['esm-bundler', 'cjs']
+const packageConfigs = []
 
 function createConfig(format, plugins = []) {
   const isGlobalBuild = /global/.test(format)
@@ -97,7 +97,7 @@ function createConfig(format, plugins = []) {
       babel({
         presets: ['@babel/preset-env'],
         exclude: 'node_modules/**',
-        extensions: ['.js', '.ts'],
+        extensions: ['.js'],
       }),
       terser({
         module: /^esm/.test(format),
@@ -106,8 +106,6 @@ function createConfig(format, plugins = []) {
           pure_getters: true,
           drop_console: env === 'development' ? false : true,
         },
-        // esm格式不混淆变量名
-        mangle: !/^esm/.test(format),
         safari10: true,
       }),
       replace({
@@ -117,6 +115,7 @@ function createConfig(format, plugins = []) {
     ],
     output: {
       ...outputConfigs[format],
+      name: 'PenPlayer',
     },
   }
 }

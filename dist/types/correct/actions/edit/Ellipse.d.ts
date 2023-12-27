@@ -11,10 +11,9 @@ type EllipseConfigType = {
     strokeWidth?: number;
 };
 declare class Ellipse extends ActionBase {
-    _config: any;
     _curEllipse: fabric.Ellipse;
     _downPointer: fabric.Point;
-    constructor(correctId: string, type: number, canvas: CanvasWithImage, config?: EllipseConfigType);
+    constructor(correctId: string, type: number, canvas: CanvasWithImage, isKeep?: boolean, config?: EllipseConfigType);
     _create(param: any): fabric.Ellipse;
     mousedown(pointer: fabric.Point): void;
     mousemove(pointer: fabric.Point): void;

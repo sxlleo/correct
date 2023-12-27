@@ -9,9 +9,9 @@
 </template>
 
 <script lang="ts" setup>
-import { CorrectTool, Controls, IconsInCanvas, Zoom } from '@xxx/jzx-correct'
+import { CorrectTool, Controls, IconsInCanvas, Zoom } from '@aixuexi/jzx-correct'
 
-const imageUrl = 'https://img-homework.xxx.com/B:1015:K/1677081600/e53a8172600144d4b2fc9d7821cecb1c.jpg'
+const imageUrl = 'https://img-homework.aixuexi.com/B:1015:K/1677081600/e53a8172600144d4b2fc9d7821cecb1c.jpg'
 
 const ButtonGroups: any[] = [
   [

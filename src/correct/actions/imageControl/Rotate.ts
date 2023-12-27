@@ -1,17 +1,16 @@
 /*
- * @Author: songxiaolin songxiaolin@xxx.com
+ * @Author: songxiaolin songxiaolin@aixuexi.com
  * @Date: 2023-02-02 14:35:49
- * @LastEditors: songxiaolin songxiaolin@xxx.com
- * @LastEditTime: 2023-02-27 16:11:48
- * @FilePath: /jzx-teacher-h5/src/views/evaluation/core/correct/actions/imageControl/Rotate.ts
+ * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditTime: 2023-06-16 16:34:17
+ * @FilePath: /jzx-correct-mobile/src/correct/actions/imageControl/Rotate.ts
  * @Description:
- * Copyright (c) 2023 by songxiaolin email: songxiaolin@xxx.com, All Rights Reserved.
+ * Copyright (c) 2023 by songxiaolin email: songxiaolin@aixuexi.com, All Rights Reserved.
  */
 import ActionBase from '../ActionBase'
 import type CanvasWithImage from '../../CanvasWithImage'
 
 export default class Rotate extends ActionBase {
-  _config: any
   /**
    * 旋转步长
    */
@@ -21,9 +20,14 @@ export default class Rotate extends ActionBase {
    */
   _curRotate = 0
 
-  constructor(correctId: string, type: number, canvas: CanvasWithImage, config?: any) {
-    super(correctId, type, canvas, false)
-    this._config = config
+  constructor(
+    correctId: string,
+    type: number,
+    canvas: CanvasWithImage,
+    isKeep = false,
+    config?: any
+  ) {
+    super(correctId, type, canvas, isKeep, config)
     console.log('@@@@@@rotate constructor===')
   }
 
@@ -37,7 +41,10 @@ export default class Rotate extends ActionBase {
    * 放大
    */
   _rotate(): void {
-    this._curRotate = this._curRotate + this.ROTATE_STEP === 360 ? 0 : this._curRotate + this.ROTATE_STEP
+    this._curRotate =
+      this._curRotate + this.ROTATE_STEP === 360
+        ? 0
+        : this._curRotate + this.ROTATE_STEP
     this.canvas.updateBackgroundImageRotate(this._curRotate)
   }
 

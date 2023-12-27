@@ -1,9 +1,17 @@
 import type { fabric } from 'fabric';
 interface IAction {
     /**
+     * 触发的参数
+     */
+    triggerParams: any;
+    /**
      * 是否保持
      */
     isKeep: boolean;
+    /**
+     * 其他额外的参数
+     */
+    externalParams: Record<string | number, any>;
     /**
      *  鼠标按下
      * @param pointer
@@ -27,7 +35,16 @@ interface IAction {
      * 销毁
      */
     destroy(): void;
+    /**
+     * 禁用
+     * @param value 是否禁用
+     */
+    disable?(value: boolean): void;
 }
+type CopyCanvasData = {
+    jsonData: any;
+    canvasWidth: number;
+};
 type ToolParamConfig = {
     /**
      * 批改工具id
@@ -40,10 +57,7 @@ type ToolParamConfig = {
      * 存放canvas的容器，
      */
     container: HTMLElement;
-    /**
-     * 初始容器宽高
-     */
-    originalContainerWidth: number;
-    originalContainerHeight: number;
+    /** 复制的画布数据*/
+    copyCanvasData: CopyCanvasData;
 };
-export type { IAction, ToolParamConfig };
+export type { IAction, ToolParamConfig, CopyCanvasData };

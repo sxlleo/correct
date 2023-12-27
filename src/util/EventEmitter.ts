@@ -1,16 +1,22 @@
 /*
- * @Author: songxiaolin songxiaolin@xxx.com
+ * @Author: songxiaolin songxiaolin@aixuexi.com
  * @Date: 2023-02-03 12:24:59
- * @LastEditors: songxiaolin songxiaolin@xxx.com
- * @LastEditTime: 2023-03-23 18:24:16
- * @FilePath: /jzx-teacher-h5/src/views/evaluation/correctsManager/core/util/EventEmitter.ts
+ * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditTime: 2023-07-05 17:10:40
+ * @FilePath: /jzx-correct-mobile/src/util/EventEmitter.ts
  * @Description:
- * Copyright (c) 2023 by songxiaolin email: songxiaolin@xxx.com, All Rights Reserved.
+ * Copyright (c) 2023 by songxiaolin email: songxiaolin@aixuexi.com, All Rights Reserved.
  */
 import mitt from 'mitt'
 class EventEmitter {
   constructor() {
     Object.assign(this, mitt())
+  }
+  emit(...args: any[]): void {
+    this.emit(...args)
+  }
+  on(...args: any[]): void {
+    this.on(...args)
   }
 }
 

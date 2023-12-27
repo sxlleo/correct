@@ -1,11 +1,11 @@
 /*
- * @Author: songxiaolin songxiaolin@xxx.com
+ * @Author: songxiaolin songxiaolin@aixuexi.com
  * @Date: 2023-02-01 14:16:32
- * @LastEditors: songxiaolin songxiaolin@xxx.com
+ * @LastEditors: songxiaolin songxiaolin@aixuexi.com
  * @LastEditTime: 2023-02-06 10:42:01
  * @FilePath: /jzx-teacher-h5/src/views/selfEvaluation/core/util/index.ts
  * @Description: 工具
- * Copyright (c) 2023 by songxiaolin email: songxiaolin@xxx.com, All Rights Reserved.
+ * Copyright (c) 2023 by songxiaolin email: songxiaolin@aixuexi.com, All Rights Reserved.
  */
 import { fabric } from 'fabric'
 
@@ -38,17 +38,17 @@ const iconsLoaded = {}
 async function preloadIcon(iconMapBeforeLoad: IconMapBeforeLoad): Promise<any> {
   const loadQueen = []
   const iconArr = Object.entries(iconMapBeforeLoad)
-  // const
   for (const [iconName, iconUrl] of iconArr) {
     if (!iconsLoaded[iconName]) {
       loadQueen.push(
-        loadImage(iconUrl)
+        (iconsLoaded[iconName] = loadImage(iconUrl)
           .then((img) => {
             iconsLoaded[iconName] = img
+            return img
           })
           .catch((err) => {
             throw new Error(err)
-          })
+          }))
       )
     }
   }
@@ -61,13 +61,13 @@ async function preloadIcon(iconMapBeforeLoad: IconMapBeforeLoad): Promise<any> {
     .then((res) => {
       // 成功
       return {
-        success: true
+        success: true,
       }
     })
     .catch((err) => {
       // 失败
       return {
-        success: false
+        success: false,
       }
     })
 }

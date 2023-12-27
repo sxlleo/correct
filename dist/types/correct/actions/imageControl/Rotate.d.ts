@@ -1,7 +1,6 @@
 import ActionBase from '../ActionBase';
 import type CanvasWithImage from '../../CanvasWithImage';
 export default class Rotate extends ActionBase {
-    _config: any;
     /**
      * 旋转步长
      */
@@ -10,7 +9,7 @@ export default class Rotate extends ActionBase {
      * 当前旋转角度
      */
     _curRotate: number;
-    constructor(correctId: string, type: number, canvas: CanvasWithImage, config?: any);
+    constructor(correctId: string, type: number, canvas: CanvasWithImage, isKeep?: boolean, config?: any);
     _handleOn(): void;
     /**
      * 放大

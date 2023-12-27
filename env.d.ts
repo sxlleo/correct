@@ -1,15 +1,15 @@
 /*
- * @Author: songxiaolin songxiaolin@xxx.com
+ * @Author: songxiaolin songxiaolin@aixuexi.com
  * @Date: 2023-03-24 16:50:09
- * @LastEditors: songxiaolin songxiaolin@xxx.com
- * @LastEditTime: 2023-08-01 20:43:48
- * @FilePath: /correct/env.d.ts
- * @Description: 
+ * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditTime: 2023-07-10 15:29:35
+ * @FilePath: /jzx-correct-mobile/env.d.ts
+ * @Description:
  * Copyright (c) 2023 by ${git_name} email: ${git_email}, All Rights Reserved.
  */
 /// <reference types="fabric" />
 
-import type CanvasWithImage from "@/correct/CanvasWithImage"
+// import type CanvasWithImage from '@/correct/CanvasWithImage'
 
 export {}
 
@@ -17,9 +17,10 @@ declare module 'fabric' {
   namespace fabric {
     interface Object {
       __actionType: number
+      __externalParams: Record<string | number, any>
     }
     interface IText {
-      updateTextareaPosition():void
+      updateTextareaPosition(): void
     }
     interface IUtil {
       getBisector(a: any, b: any, c: any): any

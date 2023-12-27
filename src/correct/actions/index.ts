@@ -1,16 +1,18 @@
 /*
- * @Author: songxiaolin songxiaolin@xxx.com
+ * @Author: songxiaolin songxiaolin@aixuexi.com
  * @Date: 2023-01-29 17:38:19
- * @LastEditors: songxiaolin songxiaolin@xxx.com
- * @LastEditTime: 2023-02-03 14:16:05
- * @FilePath: /jzx-teacher-h5/src/views/selfEvaluation/core/correct/tools/index.ts
+ * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditTime: 2023-06-16 17:58:58
+ * @FilePath: /jzx-correct-mobile/src/correct/actions/index.ts
  * @Description:
- * Copyright (c) 2023 by songxiaolin email: songxiaolin@xxx.com, All Rights Reserved.
+ * Copyright (c) 2023 by songxiaolin email: songxiaolin@aixuexi.com, All Rights Reserved.
  */
-export { default as Ellipse } from './comments/Ellipse'
-export { default as Seal } from './comments/Seal'
-export { default as Text } from './comments/Text'
-export { default as Wavyline } from './comments/Wavyline'
+export { default as Ellipse } from './edit/Ellipse'
+export { default as Seal } from './edit/Seal'
+export { default as Text } from './edit/Text'
+export { default as Wavyline } from './edit/Wavyline'
+export { default as Pencil } from './edit/Pencil'
+export { default as Remark } from './edit/Remark'
 
 export { default as NotCompleteRight } from './correcting/NotCompleteRight'
 export { default as Right } from './correcting/Right'
