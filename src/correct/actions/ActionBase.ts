@@ -1,11 +1,11 @@
 /*
- * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Author: songxiaolin sxldongman@163.com
  * @Date: 2023-01-31 16:18:37
- * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditors: songxiaolin sxldongman@163.com
  * @LastEditTime: 2023-08-17 14:34:15
- * @FilePath: /jzx-correct-mobile/src/correct/actions/ActionBase.ts
+ * @FilePath: /correct-mobile/src/correct/actions/ActionBase.ts
  * @Description:
- * Copyright (c) 2023 by songxiaolin email: songxiaolin@aixuexi.com, All Rights Reserved.
+ * Copyright (c) 2023 by songxiaolin email: sxldongman@163.com, All Rights Reserved.
  */
 import type CanvasWithImage from '../CanvasWithImage'
 import type { fabric } from 'fabric'

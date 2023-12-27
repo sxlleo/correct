@@ -1,11 +1,11 @@
 /*
- * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Author: songxiaolin sxldongman@163.com
  * @Date: 2023-01-31 17:12:57
- * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditors: songxiaolin sxldongman@163.com
  * @LastEditTime: 2023-07-11 16:08:43
- * @FilePath: /jzx-correct-mobile/src/correct/DefinedEvents/index.ts
+ * @FilePath: /correct-mobile/src/correct/DefinedEvents/index.ts
  * @Description:
- * Copyright (c) 2023 by songxiaolin email: songxiaolin@aixuexi.com, All Rights Reserved.
+ * Copyright (c) 2023 by songxiaolin email: sxldongman@163.com, All Rights Reserved.
  */
 // todo: 事件定义可以进行分类
 export default {

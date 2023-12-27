@@ -1,11 +1,11 @@
 /*
- * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Author: songxiaolin sxldongman@163.com
  * @Date: 2023-01-29 18:59:47
- * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditors: songxiaolin sxldongman@163.com
  * @LastEditTime: 2023-07-18 14:19:39
- * @FilePath: /jzx-correct-mobile/src/correct/CanvasWithImage.ts
+ * @FilePath: /correct-mobile/src/correct/CanvasWithImage.ts
  * @Description: 基础类，初始化canvas
- * Copyright (c) 2023 by songxiaolin email: songxiaolin@aixuexi.com, All Rights Reserved.
+ * Copyright (c) 2023 by songxiaolin email: sxldongman@163.com, All Rights Reserved.
  */
 import { fabric } from 'fabric'
 import type { ToolParamConfig, CopyCanvasData } from '@/interface/IAction'

@@ -1,9 +1,9 @@
 /*
- * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Author: songxiaolin sxldongman@163.com
  * @Date: 2023-02-16 11:37:24
- * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditors: songxiaolin sxldongman@163.com
  * @LastEditTime: 2023-06-21 10:24:07
- * @FilePath: /jzx-correct-mobile/src/util/ITextPatch.ts
+ * @FilePath: /correct-mobile/src/util/ITextPatch.ts
  * @Description:
  * Copyright (c) 2023 by ${git_name} email: ${git_email}, All Rights Reserved.
  */

@@ -1,9 +1,9 @@
 /*
- * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Author: songxiaolin sxldongman@163.com
  * @Date: 2023-06-14 14:34:16
- * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditors: songxiaolin sxldongman@163.com
  * @LastEditTime: 2023-08-02 16:45:22
- * @FilePath: /jzx-correct-mobile/src/correct/actions/edit/Pencil.ts
+ * @FilePath: /correct-mobile/src/correct/actions/edit/Pencil.ts
  * @Description:
  */
 import ActionBase from '../ActionBase'

@@ -1,9 +1,9 @@
 /*
- * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Author: songxiaolin sxldongman@163.com
  * @Date: 2023-03-24 16:50:09
- * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditors: songxiaolin sxldongman@163.com
  * @LastEditTime: 2023-07-10 15:29:35
- * @FilePath: /jzx-correct-mobile/env.d.ts
+ * @FilePath: /correct-mobile/env.d.ts
  * @Description:
  * Copyright (c) 2023 by ${git_name} email: ${git_email}, All Rights Reserved.
  */

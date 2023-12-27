@@ -1,11 +1,11 @@
 /*
- * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Author: songxiaolin sxldongman@163.com
  * @Date: 2023-01-29 19:13:22
- * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditors: songxiaolin sxldongman@163.com
  * @LastEditTime: 2023-06-28 14:33:31
- * @FilePath: /jzx-correct-mobile/src/interface/ICorrectTool.ts
+ * @FilePath: /correct-mobile/src/interface/ICorrectTool.ts
  * @Description:
- * Copyright (c) 2023 by songxiaolin email: songxiaolin@aixuexi.com, All Rights Reserved.
+ * Copyright (c) 2023 by songxiaolin email: sxldongman@163.com, All Rights Reserved.
  */
 interface ICorrectTool {
   /**

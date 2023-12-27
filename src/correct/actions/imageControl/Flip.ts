@@ -1,11 +1,11 @@
 /*
- * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Author: songxiaolin sxldongman@163.com
  * @Date: 2023-02-02 14:35:49
- * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditors: songxiaolin sxldongman@163.com
  * @LastEditTime: 2023-06-16 16:34:10
- * @FilePath: /jzx-correct-mobile/src/correct/actions/imageControl/Flip.ts
+ * @FilePath: /correct-mobile/src/correct/actions/imageControl/Flip.ts
  * @Description:
- * Copyright (c) 2023 by songxiaolin email: songxiaolin@aixuexi.com, All Rights Reserved.
+ * Copyright (c) 2023 by songxiaolin email: sxldongman@163.com, All Rights Reserved.
  */
 import ActionBase from '../ActionBase'
 import type CanvasWithImage from '../../CanvasWithImage'

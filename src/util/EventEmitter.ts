@@ -1,11 +1,11 @@
 /*
- * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Author: songxiaolin sxldongman@163.com
  * @Date: 2023-02-03 12:24:59
- * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditors: songxiaolin sxldongman@163.com
  * @LastEditTime: 2023-07-05 17:10:40
- * @FilePath: /jzx-correct-mobile/src/util/EventEmitter.ts
+ * @FilePath: /correct-mobile/src/util/EventEmitter.ts
  * @Description:
- * Copyright (c) 2023 by songxiaolin email: songxiaolin@aixuexi.com, All Rights Reserved.
+ * Copyright (c) 2023 by songxiaolin email: sxldongman@163.com, All Rights Reserved.
  */
 import mitt from 'mitt'
 class EventEmitter {

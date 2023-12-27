@@ -1,11 +1,11 @@
 /*
- * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Author: songxiaolin sxldongman@163.com
  * @Date: 2023-01-29 17:38:19
- * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditors: songxiaolin sxldongman@163.com
  * @LastEditTime: 2023-06-16 17:58:58
- * @FilePath: /jzx-correct-mobile/src/correct/actions/index.ts
+ * @FilePath: /correct-mobile/src/correct/actions/index.ts
  * @Description:
- * Copyright (c) 2023 by songxiaolin email: songxiaolin@aixuexi.com, All Rights Reserved.
+ * Copyright (c) 2023 by songxiaolin email: sxldongman@163.com, All Rights Reserved.
  */
 export { default as Ellipse } from './edit/Ellipse'
 export { default as Seal } from './edit/Seal'

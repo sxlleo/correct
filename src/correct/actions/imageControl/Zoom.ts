@@ -1,11 +1,11 @@
 /*
- * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Author: songxiaolin sxldongman@163.com
  * @Date: 2023-02-02 15:29:38
- * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditors: songxiaolin sxldongman@163.com
  * @LastEditTime: 2023-06-21 11:25:38
- * @FilePath: /jzx-correct-mobile/src/correct/actions/imageControl/Zoom.ts
+ * @FilePath: /correct-mobile/src/correct/actions/imageControl/Zoom.ts
  * @Description: 放大缩小控制
- * Copyright (c) 2023 by songxiaolin email: songxiaolin@aixuexi.com, All Rights Reserved.
+ * Copyright (c) 2023 by songxiaolin email: sxldongman@163.com, All Rights Reserved.
  */
 import type CanvasWithImage from '../../CanvasWithImage'
 import ActionBase from '../ActionBase'

@@ -1,9 +1,9 @@
 /*
- * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Author: songxiaolin sxldongman@163.com
  * @Date: 2023-04-04 15:49:31
- * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditors: songxiaolin sxldongman@163.com
  * @LastEditTime: 2023-07-06 16:44:19
- * @FilePath: /jzx-correct-mobile/src/correct/actions/correcting/CorrectingBase.ts
+ * @FilePath: /correct-mobile/src/correct/actions/correcting/CorrectingBase.ts
  * @Description: 将组件共性的部分抽离出来，作为基类
  * Copyright (c) 2023 by ${git_name} email: ${git_email}, All Rights Reserved.
  */

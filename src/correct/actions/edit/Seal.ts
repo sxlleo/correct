@@ -1,11 +1,11 @@
 /*
- * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Author: songxiaolin sxldongman@163.com
  * @Date: 2023-01-29 14:16:25
- * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditors: songxiaolin sxldongman@163.com
  * @LastEditTime: 2023-06-28 15:05:10
- * @FilePath: /jzx-correct-mobile/src/correct/actions/edit/Seal.ts
+ * @FilePath: /correct-mobile/src/correct/actions/edit/Seal.ts
  * @Description:
- * Copyright (c) 2023 by songxiaolin email: songxiaolin@aixuexi.com, All Rights Reserved.
+ * Copyright (c) 2023 by songxiaolin email: sxldongman@163.com, All Rights Reserved.
  */
 import type { fabric } from 'fabric'
 import ActionBase from '../ActionBase'

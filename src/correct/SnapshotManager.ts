@@ -1,9 +1,9 @@
 /*
- * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Author: songxiaolin sxldongman@163.com
  * @Date: 2023-06-14 22:39:02
- * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditors: songxiaolin sxldongman@163.com
  * @LastEditTime: 2023-08-17 14:31:06
- * @FilePath: /jzx-correct-mobile/src/correct/SnapshotManager.ts
+ * @FilePath: /correct-mobile/src/correct/SnapshotManager.ts
  * @Description:
  */
 class SnapshotManager {

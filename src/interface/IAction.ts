@@ -1,11 +1,11 @@
 /*
- * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Author: songxiaolin sxldongman@163.com
  * @Date: 2023-01-17 14:31:15
- * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditors: songxiaolin sxldongman@163.com
  * @LastEditTime: 2023-06-28 16:35:42
- * @FilePath: /jzx-correct-mobile/src/interface/IAction.ts
+ * @FilePath: /correct-mobile/src/interface/IAction.ts
  * @Description: 工具接口
- * Copyright (c) 2023 by songxiaolin email: songxiaolin@aixuexi.com, All Rights Reserved.
+ * Copyright (c) 2023 by songxiaolin email: sxldongman@163.com, All Rights Reserved.
  */
 import type { fabric } from 'fabric'
 interface IAction {

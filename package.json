@@ -1,14 +1,14 @@
 {
-  "name": "@aixuexi/jzx-correct-mobile",
+  "name": "correct-mobile",
   "version": "0.0.28",
   "description": "",
-  "filename": "jzx-correct-mobile",
+  "filename": "correct-mobile",
   "type": "module",
   "files": [
     "dist"
   ],
-  "main": "dist/jzx-correct-mobile.cjs.js",
-  "module": "dist/jzx-correct-mobile.esm-bundler.js",
+  "main": "dist/correct-mobile.cjs.js",
+  "module": "dist/correct-mobile.esm-bundler.js",
   "scripts": {
     "prebuild": "rm -rf dist",
     "build": "rollup -c --bundleConfigAsCjs",

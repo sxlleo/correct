@@ -1,7 +1,7 @@
 /*
- * @Author: songxiaolin songxiaolin@aixuexi.com
+ * @Author: songxiaolin sxldongman@163.com
  * @Date: 2023-03-03 11:37:19
- * @LastEditors: songxiaolin songxiaolin@aixuexi.com
+ * @LastEditors: songxiaolin sxldongman@163.com
  * @LastEditTime: 2023-06-15 11:37:19
  * @FilePath: /jzx-correct/src/correct/config.ts
  * @Description:
